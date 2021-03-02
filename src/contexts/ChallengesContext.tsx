@@ -12,6 +12,7 @@ interface Challenge {
 }
 
 interface ChallengesContextData {
+    // user: string;
     level: number;
     currentExperience: number;
     challengesCompleted: number;
@@ -29,6 +30,9 @@ interface ChallengesProviderProps {
     level: number;
     currentExperience: number;
     challengesCompleted: number;
+    // dotcom_user:string;
+    // user: string;
+    // userGit: string;
 }
 
 
@@ -47,6 +51,8 @@ export function ChallengesProvider({
     const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false)
 
     const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
+    
+    const [user, setUser] = useState("user")
 
     useEffect(() => {
         Notification.requestPermission()
@@ -56,7 +62,11 @@ export function ChallengesProvider({
         Cookies.set('level', String(level))
         Cookies.set('currentExperience', String(currentExperience))
         Cookies.set('challengesCompleted', String(challengesCompleted))
-    }, [ level, currentExperience, challengesCompleted])
+        Cookies.get('dotcom_user')
+        // const user = Cookies.getJSON('dotcom_user')
+    }, [ level, currentExperience, challengesCompleted] )
+
+    var X = Cookies.get('dotcom_user')
 
     function levelUp() {
         setlevel(level + 1)
@@ -123,6 +133,7 @@ export function ChallengesProvider({
                 experienceToNextLevel,
                 completeChallenge,
                 closeLevelUpModal,
+                // user,
             }}
         >
             {children}
