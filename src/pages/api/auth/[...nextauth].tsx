@@ -7,36 +7,17 @@ const options = {
     // Configure one or more authentication providers
     providers: [
       Providers.GitHub({
-        clientId: process.env.GITHUB_ID,
-        clientSecret: process.env.GITHUB_SECRET
+        clientId: "b1974ed3a5f31e6c366b",
+        clientSecret: "4e5fe5fb4708d10216cf8c6f6cf3299c61d0b00c",
+        // redirectUri: 
+        // process.env.GITHUB_SECRET
       }),
       // ...add more providers here
     ],
   
     // A database is optional, but required to persist accounts in a database
     database: process.env.NEXTAUTH_URL,
-    callbacks: {
-      /**
-       * @param  {object} user     User object
-       * @param  {object} account  Provider account
-       * @param  {object} profile  Provider profile 
-       * @return {boolean|string}  Return `true` to allow sign in
-       *                           Return `false` to deny access
-       *                           Return `string` to redirect to (eg.: "/unauthorized")
-       */
-      async signIn(user, account, profile) {
-        const isAllowedToSignIn = true
-        if (isAllowedToSignIn) {
-          return true
-        } else {
-          // Return false to display a default error message
-          return false
-          // Or you can return a URL to redirect to:
-          // return '/unauthorized'
-        }
-      }
-    }
-
+    
 }
 
 export default (req: NextApiRequest, res: NextApiResponse):Promise<void> => NextAuth(req, res, options);

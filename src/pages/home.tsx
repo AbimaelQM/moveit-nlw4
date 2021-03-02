@@ -18,6 +18,7 @@ interface HomeProps {
   level: number;
   currentExperience:number;
   challengesCompleted:number;
+  // user: string,
 }
 
 
@@ -29,6 +30,7 @@ export default function Home(props: HomeProps) {
       level={props.level}
       currentExperience={props.currentExperience}
       challengesCompleted={props.challengesCompleted}
+      // user={user}
 
 
     >
@@ -60,7 +62,7 @@ export default function Home(props: HomeProps) {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
  
-  const {level, currentExperience, challengesCompleted} = ctx.req.cookies
+  const {level, currentExperience, challengesCompleted, user} = ctx.req.cookies
  
   return {
 
@@ -68,6 +70,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       level: Number(level),
       currentExperience: Number(currentExperience),
       challengesCompleted: Number(challengesCompleted),
+      // user: user,
+      // userGit: String(dotcom_user),
     }
   }
 }
